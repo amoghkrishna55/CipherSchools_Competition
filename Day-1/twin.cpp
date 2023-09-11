@@ -30,7 +30,7 @@ void insertNode(Node* &head, int val){
     n->prev = temp;
 }
 
-int twin(Node* &head){
+int twin(Node* head){
     Node* tail = head;
     int max = INT_MIN;
     while(tail->next!=NULL){
