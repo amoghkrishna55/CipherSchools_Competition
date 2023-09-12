@@ -65,12 +65,8 @@ int main(){
     Node* head = NULL;
     int a,b;
     cin >> a;
-    if(a==0){
+    if(a<=0){
         cout << 0;
-        return 0;
-    }
-    if(a==0){
-        cout << "0" << endl;
         return 0;
     }
     while(a--){
