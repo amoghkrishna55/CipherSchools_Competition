@@ -69,6 +69,11 @@ int main(){
         cout << 0;
         return 0;
     }
+    if(a==1){
+        cin >> b;
+        cout << b;
+        return 0;
+    }
     while(a--){
         cin >> b;
         insertNode(head,b);
