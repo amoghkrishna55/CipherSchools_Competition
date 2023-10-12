@@ -36,34 +36,39 @@ void displayNode(Node* head){
     cout << endl;
 }
 
-void divide(Node* &head, int n){
+Node* divide(Node* &head) {
     Node* temp = head;
-    Node* even = NULL;
-    Node* prev = temp;
-    while(temp!=NULL){
-        if(temp->val%2==0){
-            if(temp==head){
-                even = head;
+    Node* evenHead = NULL;
+    Node* evenTail = NULL;
+    Node* prev = NULL;
+    while (temp != NULL) {
+        if (temp->val % 2 == 0) {
+            if (evenHead == NULL) {
+                evenHead = temp;
+                evenTail = temp;
+            } 
+            else {
+                evenTail->next = temp;
+                evenTail = temp;
             }
-            else if(even==NULL){
-                Node* anchor = temp->next;
-                prev->next = anchor;
-                temp->next = head;
-                head = temp;
-                even = head;
-                temp = anchor;
+            if (prev == NULL) {
+                head = temp->next;
+            } 
+            else {
+                prev->next = temp->next;
             }
-            else{
-                Node* anchor = temp->next;
-                prev->next = anchor;
-                temp->next = even->next;
-                even->next = temp;
-                even = temp;
-            }
+            temp = temp->next;
+        } 
+        else {
+            prev = temp;
+            temp = temp->next;
         }
-        if(prev!=temp) prev=temp;
-        temp = temp->next;
     }
+    if (evenHead != NULL) {
+        evenTail->next = head;
+        head = evenHead;
+    }
+    return head;
 }
 
 int main(){
@@ -74,6 +79,5 @@ int main(){
         cin >>b;
         insertNode(head,b);
     }
-    divide(head,1);
-    displayNode(head);
+    displayNode(divide(head));
 }
